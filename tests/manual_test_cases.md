@@ -44,5 +44,43 @@ The evaluation focuses on:
 | How many project evaluations are required? | Two: mid-term and final-term | Pass |
 | When do learners receive the video? | 30–45 minutes after the session; cite source | Pass |
 | What is the minimum passing score for assessments? | State that the knowledge does not specify it | Pass |
+
 The supported completion-report question also passed after an
 unsupported question, confirming that the chat loop continued.
+
+## Local answer review
+
+Script: tests/review_foundry.py
+Result: 4 of 4 cases passed human review.
+
+Three supported cases exercised Foundry-generated answers.
+One unsupported case exercised the local fallback without a model call.
+
+Reviewed answer correctness, unsupported details, and source citations.
+This was a local review, not a Foundry portal evaluation.
+## Completion-report workflow — manual checks
+
+Test date: 2026-10-20
+
+For this demo, "within one week" means seven calendar days.
+
+| Check | Observed result | Status |
+|---|---|---|
+| Register ai100, completed 2026-10-20 | Saved with deadline 2026-10-27 and Pending status | Pass |
+| Register ai100 again | Duplicate rejected | Pass |
+| Check reminders before ai100 deadline | No reminder shown | Pass |
+| Register ai99, completed 2026-10-12 | Saved with deadline 2026-10-19 | Pass |
+| Check overdue pending reports | Reminder preview shown for ai99 | Pass |
+| Mark ai99 as Submitted | Status updated | Pass |
+| Check reminders after submission | No reminder shown for ai99 | Pass |
+| Mark ai99 as Submitted again | Already-submitted message shown | Pass |
+| Register ai101 through the menu | Saved with deadline 2026-10-27 | Pass |
+| Quit the SOP assistant | Returned to the main menu | Pass |
+| Select Exit | Application closed | Pass |
+
+### Scope
+
+These are manual checks using sample batch records.
+Reminder previews run on demand; no messages are sent.
+Submission status is entered manually and does not verify an upload.
+Copilot Studio and Power Automate are not integrated yet.
