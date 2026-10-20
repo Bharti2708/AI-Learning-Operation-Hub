@@ -100,6 +100,19 @@ Recorded baseline:
 These are small local checks, not a Foundry portal evaluation.
 Manual workflow results are recorded in `tests/manual_test_cases.md`.
 
+### Microsoft Foundry baseline
+
+Evaluation Run: `trainer-sop-baseline-v1`
+
+Three supported question-answer examples were evaluated using GPT-5.2
+as the judge model:
+
+- Relevance: 3/3 passed.
+- Groundedness: 3/3 passed, each scoring 5.
+- Overall: 6/6 evaluator checks passed.
+
+This small baseline does not establish general accuracy.
+Unsupported-question fallback behaviour was checked separately.
 ## Limitations
 
 - Retrieval uses keyword and synonym matching.
@@ -111,7 +124,6 @@ Manual workflow results are recorded in `tests/manual_test_cases.md`.
 
 ## Planned extensions
 
-- Foundry-based evaluation.
 - Copilot Studio interface.
 - SharePoint report tracking.
 - Power Automate reminder delivery.

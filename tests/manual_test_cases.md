@@ -84,3 +84,21 @@ These are manual checks using sample batch records.
 Reminder previews run on demand; no messages are sent.
 Submission status is entered manually and does not verify an upload.
 Copilot Studio and Power Automate are not integrated yet.
+
+## Microsoft Foundry evaluation
+
+- Run: trainer-sop-baseline-v1
+- Date: 2026-10-20
+- Dataset: foundry_evaluation, version 1
+- Judge model: GPT-5.2
+- Scope: Three supported, individual question-answer examples
+- Relevance: 3/3 passed
+- Groundedness: 3/3 passed; each scored 5
+- Overall: 6/6 evaluator checks passed
+
+The completion-report explanation confirmed that the answer matched
+the supplied deadline, cited the correct section, and introduced no
+unsupported details.
+
+These results cover a small baseline dataset. They do not establish
+general accuracy or evaluate unsupported-question fallback behaviour.

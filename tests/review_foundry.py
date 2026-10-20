@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+import json
 
 from dotenv import load_dotenv
 
@@ -37,6 +38,8 @@ test_cases = [
 ]
 
 passed_count = 0
+
+evaluation_rows = []
 
 for question, expected_answer in test_cases:
     print("\n" + "=" * 60)
@@ -100,6 +103,15 @@ for question, expected_answer in test_cases:
     print("  SOP document and section? Check the SOP itself.")
     print("- For the fallback, no citation is required.")
 
+        # Save supported answers for Foundry evaluation.
+    if stream is not None:
+        evaluation_rows.append({
+            "query": question,
+            "response": answer,
+            "context": assistant.last_context,
+            "ground_truth": expected_answer,
+        })
+
     result = input("\nEnter pass or fail: ").strip().lower()
 
     while result not in {"pass", "fail"}:
@@ -112,3 +124,11 @@ print(
     f"\nHuman-reviewed result: "
     f"{passed_count} of {len(test_cases)} passed."
 )
+
+output_file = project_root / "tests" / "foundry_evaluation.jsonl"
+
+with output_file.open("w", encoding="utf-8") as file:
+    for row in evaluation_rows:
+        file.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+print(f"\nEvaluation dataset saved to: {output_file}")

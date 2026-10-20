@@ -3,6 +3,7 @@ from knowledge_search import (
     search_knowledge_base,
     build_context_from_results,
 )
+
 from prompt_builder import build_grounded_prompt
 from knowledge_validator import validate_search_results
 class LearningAssistantOrchestrator:
@@ -40,7 +41,8 @@ class LearningAssistantOrchestrator:
                 validated_results
             )
         )
-
+        self.last_context = knowledge_context
+        
         # If there is no evidence, do not call the model.
         if not knowledge_context:
             return None, []
